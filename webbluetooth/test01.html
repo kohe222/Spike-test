@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEGO SPIKE Prime Web Bluetooth</title>
+</head>
+<body>
+    <button id="connectButton">Connect to LEGO SPIKE Prime</button>
+
+    <script>
+        document.getElementById('connectButton').addEventListener('click', () => {
+            navigator.bluetooth.requestDevice({
+                filters: [{ services: ['bluetooth:bbb8'] }] // LEGO SPIKE PrimeのサービスUUID
+            })
+            .then(device => {
+                // デバイスが見つかった時の処理
+                console.log('Connected to LEGO SPIKE Prime:', device.name);
+                // ここでデバイスとの通信や制御を行います
+            })
+            .catch(error => {
+                // エラーハンドリング
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
